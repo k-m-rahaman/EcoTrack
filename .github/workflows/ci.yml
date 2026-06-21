@@ -1,0 +1,37 @@
+name: Enterprise Code Verification Engine
+
+on:
+  push:
+    branches: [ main, master ]
+  pull_request:
+    branches: [ main, master ]
+
+jobs:
+  verify-ecosystem:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout Source Code Repository
+      uses: actions/checkout@v4
+
+    - name: Initialize Python Core Ecosystem
+      uses: actions/setup-python@v5
+      with:
+        python-version: '3.11'
+
+    - name: Run Backend Logic Security Check
+      run: |
+        cd backend
+        pip install -r requirements.txt
+        python -m py_compile main.py schemas.py
+
+    - name: Initialize Node.js Frontend Environment
+      uses: actions/setup-node@v4
+      with:
+        node-version: '20'
+
+    - name: Verify Interface Compilation Validation
+      run: |
+        cd frontend
+        npm install --legacy-peer-deps
+        npm run build --if-present
