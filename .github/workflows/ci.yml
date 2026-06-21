@@ -19,11 +19,11 @@ jobs:
       with:
         python-version: '3.11'
 
-    - name: Run Backend Logic Security Check
+    - name: Run Backend Logic Unit Tests
       run: |
         cd backend
         pip install -r requirements.txt
-        python -m py_compile main.py schemas.py
+        pytest
 
     - name: Initialize Node.js Frontend Environment
       uses: actions/setup-node@v4
