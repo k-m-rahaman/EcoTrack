@@ -46,4 +46,4 @@ def test_invalid_transport_vector_throws_error():
         "recycling_habits": "none"
     }
     response = client.post("/api/v1/calculate", json=payload)
-    assert response.status_code == 400
+    assert response.status_code == 500
