@@ -21,7 +21,7 @@ jobs:
 
     - name: Run Backend Logic Unit Tests
       run: |
-        cd backend
+        cd Ecotrack/backend
         pip install -r requirements.txt
         pytest
 
@@ -32,6 +32,6 @@ jobs:
 
     - name: Verify Interface Compilation Validation
       run: |
-        cd frontend
+        cd Ecotrack/frontend
         npm install --legacy-peer-deps
         npm run build --if-present
